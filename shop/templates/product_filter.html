@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Filter</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    {% include 'navbar.html' %}
+
+    <h1>Filter Products by Type</h1>
+    <form method="get" action="{% url 'filter_products' %}">
+        <label for="type">Choose a type:</label>
+        <select name="type" id="type">
+            <option value="organic">Organic</option>
+            <option value="gmo">GMO</option>
+        </select>
+        <input type="submit" value="Filter">
+    </form>
+
+    <h2>Filtered Products</h2>
+    <ul>
+        {% for product in products %}
+            <li>{{ product.name }} - {{ product.type }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
